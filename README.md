@@ -12,6 +12,9 @@ This repository contains code to run a simulation model of major depressive epis
 1. Specify the parameters to be estimated by adjusting the code in `main.R` (see code comments). This can also be done manually in `parameters.xlsx`.
 2. Run `calibration.R` to generate parameter estimates that minimize the sum of squared distances between model and NSDUH data.
 
-**Run the model and generate figures:**
+**Run the model and generate Figures 2, 3, 4, S1, S2, S4:**
 1. Run `main.R` with the calibrated parameter estimates. 
 2. Run `manuscript_figures.R`.
+
+**Run sensitivity analysis and generate Figures S3 and S5:**
+1. Run `sensitivity_analysis.R`. This produces the `PSE_200N_50B.Rda` file.
