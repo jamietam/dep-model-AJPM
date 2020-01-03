@@ -1,5 +1,5 @@
 # Set directory where results will be saved
-mainDir <- "C:/Users/JT936/Documents/GitHub/dep-model-AJPM/"
+mainDir <- "~/GitHub/dep-model-AJPM/"
 setwd(file.path(mainDir))
 library(openxlsx)
 library(splines)

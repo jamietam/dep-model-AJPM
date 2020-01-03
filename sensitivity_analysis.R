@@ -72,6 +72,7 @@ res.names <- c("Lifetime MDE - Females","Lifetime MDE - Males","Forgot MDE - Fem
 
 myLHS <- LHS(modelrun, factors, N, q, q.arg, res.names, nboot=50)
 # save(myLHS,file=paste0("LHS_200N_50B.rda"))
+load("LHS_200N_50B.rda")
 
 # Generate uncertainty analysis figures for appendix
 library(ggplot2)
@@ -85,7 +86,7 @@ mdelhs$prev <- as.numeric(as.character(mdelhs$prev))
 avg <- ddply(mdelhs, "gender", summarise, prev.mean=mean(prev))
 
 mdelhs_plot<-ggplot(data=mdelhs, aes(x=prev*100, fill=gender)) + geom_density(alpha=0.5) +
-  labs(title="A) Lifetime MD")+
+  labs(title="A) Lifetime MDE")+
   geom_vline(data=avg, aes(xintercept=prev.mean*100,  colour=gender), linetype="dashed", size=1)+
   scale_x_continuous(name="Prevalence (%)",limits=c(min(mdelhs$prev*100-1),max(mdelhs$prev*100+1)),breaks=seq(0,max(mdelhs$prev*100+1),1)) +
   theme(legend.title = element_blank(),plot.title = element_text(hjust = -0.14))
@@ -117,7 +118,7 @@ grid_arrange_shared_legend <- function(plots,columns,titletext) {
 
 # Figure S3 or Figure S5
 jpeg(filename = paste0("Figure_S3_uncertainty_dist.jpg"),width=10, height=6, units ="in", res=1000)
-grid_arrange_shared_legend(list(mdelhs_plot,forgotlhs_plot),2,"Uncertainty distributions")
+grid_arrange_shared_legend(list(mdelhs_plot,forgotlhs_plot),2,"")
 dev.off()
 
 # Numbers for manuscript text 
