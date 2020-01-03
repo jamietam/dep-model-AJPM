@@ -6,7 +6,7 @@ library(gridExtra)
 library(plyr)
 library(Hmisc)
 options(scipen=999)
-mainDir <- "C:/Users/JT936/Documents/GitHub/dep-model-AJPM/"
+mainDir <- "~/GitHub/dep-model-AJPM/"
 setwd(file.path(mainDir)) # Set directory where results will be saved
 source('~/GitHub/dep-model-AJPM/main.r')
 
@@ -130,16 +130,16 @@ lifetimeMDE <- function(d2,d3,f1,d0,e0,whichgender, whichyear){
   d0 = d0*100
   e0 = e0*100
   d2$age<-c("18-25","26-34","35-49","50-64","65+","Total")
-  d2$status<-"Current MD"
+  d2$status<-"Current MDE"
   d3$age<-c("18-25","26-34","35-49","50-64","65+","Total")
-  d3$status<-"Former MD"
+  d3$status<-"Former MDE"
   f1$age<-c("18-25","26-34","35-49","50-64","65+","Total")
   f1$status<-"Recall error"
   f1 <- melt(f1[c(whichyear,"status","age")],by=c("status","age"))
   d0$age<-c("18-25","26-34","35-49","50-64","65+","Total")
-  d0$status <- "Never MD"
+  d0$status <- "Never MDE"
   e0$age<-c("18-25","26-34","35-49","50-64","65+","Total")
-  e0$status <- "Lifetime MD"
+  e0$status <- "Lifetime MDE"
   e0 <- melt(e0[c(whichyear,"status","age")],by=c("status","age"))
   
   comparedata <- rbind(melt(d2[c(whichyear,"status","age")],by=c("status","age")),
@@ -152,8 +152,6 @@ lifetimeMDE <- function(d2,d3,f1,d0,e0,whichgender, whichyear){
     geom_text(data=e0, aes(x = age, y = value,
                            label = paste0(sprintf("%.1f", round(value,3)),"%\n",
                                           "(",sprintf("%.1f",round(f1$value,3)),"%)")  ,vjust=-1), size=3) +
-    # geom_text(data=f1, aes(x = age, y= value,
-    #                        label = paste0("(f=",sprintf("%.1f", round(value,3)),"%)"),vjust=-10), size=3)+
     ggtitle(paste0(whichgender)) +
     theme(legend.position="bottom", legend.direction="horizontal",
           legend.title = element_blank(), plot.title = element_text(hjust = -0.14)) +
@@ -166,6 +164,10 @@ f1plotF <- lifetimeMDE(d2F, d3F, f1F, d0F, e0F,"A) Females", "2017") # Used phot
 f1plotM <- lifetimeMDE(d2M, d3M, f1M, d0M, e0M,"B) Males", "2017") 
 jpeg(filename = paste0(mainDir, "Figure_4_lifetimeprev.jpg"),width=10, height=6, units ="in", res=1000)
 grid_arrange_shared_legend(list(f1plotF,f1plotM),2,"")
+dev.off()
+
+jpeg(filename = paste0(mainDir, "test.jpg"),width=5, height=6, units ="in", res=1000)
+f1plotF
 dev.off()
 
 ## Supplement Figures
@@ -208,6 +210,7 @@ e0plotM <-plotprevbyage(e0M, "everdep","everdep","totalpop",c(0,35),seq(0,35,5),
 jpeg(filename = paste0(mainDir, "Figure_S2_recallerror.jpg"),width=10, height=6, units ="in", res=1000)
 grid_arrange_shared_legend(list(e0plotF,e0plotM),2,"")
 dev.off()
+
 # Figure S4
 Sf1plotF <- lifetimeMDE(d2F, d3F, f1F, d0F, e0F,"A) Females", "2015") 
 Sf1plotM <- lifetimeMDE(d2M, d3M, f1M, d0M, e0M,"B) Males", "2015") 
