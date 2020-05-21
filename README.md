@@ -1,4 +1,4 @@
-## Lifetime Prevalence of Major Depressive Episodes and Adjustment of Recall Error Through Simulation Modeling
+## U.S. Simulation of Lifetime Major Depressive Episode Prevalence and Recall Error
 ##### Code written by Jamie Tam
 
 This repository contains code to run a simulation model of major depressive episodes that adjusts for recall error in estimates of lifetime major depressive episodes (MDEs). The model is run in R and calibrated to data from the National Survey on Drug Use and Health (NSDUH) 2005-2017. 
