@@ -1,5 +1,5 @@
 ## U.S. Simulation of Lifetime Major Depressive Episode Prevalence and Recall Error
-##### Code written by Jamie Tam
+##### Citation: Tam J, Mezuk B, Zivin K, Meza R. U.S. Simulation of Lifetime Major Depressive Episode Prevalence and Recall Error. <i>American Journal of Preventive Medicine</i>. 2020. <a href="https://doi.org/10.1016/j.amepre.2020.03.021">https://doi.org/10.1016/j.amepre.2020.03.021</a>
 
 This repository contains code to run a simulation model of major depressive episodes that adjusts for recall error in estimates of lifetime major depressive episodes (MDEs). The model is run in R and calibrated to data from the National Survey on Drug Use and Health (NSDUH) 2005-2017. 
 
